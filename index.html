@@ -10,17 +10,17 @@
 <style>
 
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
+  box-sizing:border-box;
   font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
   background:#e8e8e8;
+  min-height:100vh;
   display:flex;
   flex-direction:column;
-  min-height:100vh;
 }
 
 header{
@@ -30,8 +30,8 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  position:relative;
   flex-wrap:wrap;
+  position:relative;
 }
 
 .logo{
@@ -61,7 +61,7 @@ nav a:hover{
 
 .login-top{
   position:absolute;
-  top:6px;
+  top:8px;
   right:40px;
   color:#86BC25;
   font-size:12px;
@@ -76,15 +76,15 @@ main{
 .card{
   background:#fff;
   max-width:1100px;
-  margin:0 auto;
+  margin:auto;
   padding:40px;
   width:100%;
 }
 
 h1{
   text-align:center;
-  font-weight:400;
   font-size:28px;
+  font-weight:400;
   margin-bottom:24px;
 }
 
@@ -107,13 +107,12 @@ h2{
 
 label{
   display:block;
-  font-weight:bold;
   font-size:14px;
+  font-weight:bold;
   margin-bottom:4px;
 }
 
-input[type=text],
-input[type=password]{
+input{
   width:100%;
   height:38px;
   border:1px solid #999;
@@ -131,9 +130,9 @@ button{
   color:#fff;
   border:none;
   padding:10px 30px;
-  font-weight:bold;
-  cursor:pointer;
   border-radius:3px;
+  cursor:pointer;
+  font-weight:bold;
   font-size:14px;
   height:40px;
 }
@@ -152,21 +151,39 @@ button:hover{
   display:inline-block;
   margin-top:24px;
   color:#0076A8;
-  font-size:14px;
   text-decoration:none;
-}
-
-.forgot:hover{
-  text-decoration:underline;
+  font-size:14px;
 }
 
 .back{
   display:inline-block;
-  margin-top:64px;
+  margin-top:60px;
   font-weight:bold;
-  font-size:14px;
-  color:#000;
   text-decoration:none;
+  color:#000;
+  font-size:14px;
+}
+
+#pdfContainer{
+  width:100%;
+  margin-top:20px;
+}
+
+#pdfFrame{
+  width:100%;
+  height:85vh;
+  border:1px solid #ccc;
+}
+
+.dl{
+  display:inline-block;
+  margin-top:20px;
+  background:#0076A8;
+  color:#fff;
+  padding:10px 20px;
+  border-radius:3px;
+  text-decoration:none;
+  font-weight:bold;
 }
 
 footer .links{
@@ -174,7 +191,6 @@ footer .links{
   padding:24px;
   text-align:center;
   font-size:13px;
-  color:#444;
 }
 
 footer .links a{
@@ -183,42 +199,12 @@ footer .links a{
   margin:0 6px;
 }
 
-footer .links a:hover{
-  text-decoration:underline;
-}
-
 footer .legal{
   background:#fff;
   padding:24px 40px;
   font-size:12px;
   color:#555;
   line-height:1.5;
-}
-
-footer .legal a{
-  color:#0076A8;
-}
-
-#pdfFrame{
-  width:100%;
-  height:85vh;
-  border:none;
-}
-
-.dl{
-  display:inline-block;
-  margin-top:16px;
-  background:#0076A8;
-  color:#fff;
-  padding:10px 20px;
-  text-decoration:none;
-  border-radius:3px;
-  font-weight:bold;
-  font-size:14px;
-}
-
-.dl:hover{
-  background:#005f87;
 }
 
 /* MOBILE */
@@ -254,12 +240,12 @@ footer .legal a{
     width:100%;
   }
 
-  footer .legal{
-    padding:20px;
-  }
-
   #pdfFrame{
     height:70vh;
+  }
+
+  footer .legal{
+    padding:20px;
   }
 
 }
@@ -287,7 +273,7 @@ footer .legal a{
 
 <main>
 
-  <!-- LOGIN -->
+  <!-- LOGIN VIEW -->
 
   <div class="card" id="loginView">
 
@@ -301,15 +287,17 @@ footer .legal a{
 
         <div>
           <label>Username</label>
-          <input type="text" id="username" autocomplete="username">
+          <input type="text" id="username">
         </div>
 
         <div>
           <label>Password</label>
-          <input type="password" id="password" autocomplete="current-password">
+          <input type="password" id="password">
         </div>
 
-        <button type="submit">Log in</button>
+        <button type="submit">
+          Log in
+        </button>
 
       </div>
 
@@ -337,7 +325,24 @@ footer .legal a{
 
     <h1>Your Offer Letter</h1>
 
-    <iframe id="pdfFrame"></iframe>
+    <div id="pdfContainer">
+
+      <object
+        id="pdfFrame"
+        data=""
+        type="application/pdf">
+
+        <iframe
+          id="mobileFrame"
+          src=""
+          width="100%"
+          height="100%"
+          style="border:none;">
+        </iframe>
+
+      </object>
+
+    </div>
 
     <a class="dl" id="dlLink" href="" download>
       Download PDF
@@ -355,27 +360,14 @@ footer .legal a{
     <a href="#">Terms of use</a> |
     <a href="#">Privacy</a> |
     <a href="#">Data Privacy Framework</a> |
-    <a href="#">Do Not Sell or Share My Personal Information</a> |
-    <a href="#">Cookies</a> |
-    <a href="#">Legal information for job seekers and ADA</a>
-
-    <div style="margin-top:6px">
-      <a href="#">Labor condition applications</a> |
-      <a href="#">Assistance for people with disabilities</a>
-    </div>
+    <a href="#">Cookies</a>
 
   </div>
 
   <div class="legal">
 
     <p>
-      © 2026. See <a href="#">Terms of Use</a> for more information.
-    </p>
-
-    <p style="margin-top:10px">
-      Deloitte refers to one or more of Deloitte Touche Tohmatsu Limited,
-      a UK private company limited by guarantee ("DTTL"),
-      its network of member firms, and their related entities.
+      © 2026 Deloitte.
     </p>
 
   </div>
@@ -384,39 +376,62 @@ footer .legal a{
 
 <script>
 
-// ===== EDIT THESE =====
+// ===== LOGIN DETAILS =====
 
 const VALID_USERNAME = "akshatgupta955";
 const VALID_PASSWORD = "akshat@123";
+
 const PDF_URL = "offer-letter.pdf";
 
-// ======================
+// =========================
 
-document.getElementById("loginForm")
+document
+.getElementById("loginForm")
 .addEventListener("submit", function(e){
 
   e.preventDefault();
 
-  const u = document.getElementById("username").value;
-  const p = document.getElementById("password").value;
+  const u =
+    document.getElementById("username").value;
 
-  if(u === VALID_USERNAME && p === VALID_PASSWORD){
+  const p =
+    document.getElementById("password").value;
 
-    document.getElementById("loginView").style.display = "none";
+  if(
+    u === VALID_USERNAME &&
+    p === VALID_PASSWORD
+  ){
 
-    document.getElementById("pdfView").style.display = "block";
+    document.getElementById("loginView")
+    .style.display = "none";
 
-    // MOBILE + DESKTOP PDF VIEWER
+    document.getElementById("pdfView")
+    .style.display = "block";
 
-    document.getElementById("pdfFrame").src =
-      "https://docs.google.com/gview?embedded=1&url=" +
-      encodeURIComponent(window.location.origin + "/" + PDF_URL);
+    // DESKTOP PDF
 
-    document.getElementById("dlLink").href = PDF_URL;
+    document
+    .getElementById("pdfFrame")
+    .setAttribute("data", PDF_URL);
 
-  }else{
+    // MOBILE PDF
 
-    document.getElementById("err").style.display = "block";
+    document
+    .getElementById("mobileFrame")
+    .setAttribute("src", PDF_URL);
+
+    // DOWNLOAD BUTTON
+
+    document
+    .getElementById("dlLink")
+    .setAttribute("href", PDF_URL);
+
+  }
+
+  else{
+
+    document.getElementById("err")
+    .style.display = "block";
 
   }
 
