@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Deloitte — Login</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -42,8 +45,8 @@ header{
 
 nav{
   display:flex;
+  gap:20px;
   flex-wrap:wrap;
-  gap:16px;
 }
 
 nav a{
@@ -92,8 +95,8 @@ h2{
 
 .row{
   display:flex;
-  flex-wrap:wrap;
   gap:24px;
+  flex-wrap:wrap;
   align-items:flex-end;
 }
 
@@ -111,10 +114,10 @@ label{
 
 input[type=text],
 input[type=password]{
-  height:36px;
   width:100%;
+  height:38px;
   border:1px solid #999;
-  padding:0 8px;
+  padding:0 10px;
   font-size:14px;
 }
 
@@ -127,7 +130,7 @@ button{
   background:#0076A8;
   color:#fff;
   border:none;
-  padding:10px 32px;
+  padding:10px 30px;
   font-weight:bold;
   cursor:pointer;
   border-radius:3px;
@@ -196,10 +199,10 @@ footer .legal a{
   color:#0076A8;
 }
 
-iframe{
+#pdfFrame{
   width:100%;
-  height:80vh;
-  border:1px solid #ccc;
+  height:85vh;
+  border:none;
 }
 
 .dl{
@@ -214,7 +217,12 @@ iframe{
   font-size:14px;
 }
 
-/* MOBILE RESPONSIVE */
+.dl:hover{
+  background:#005f87;
+}
+
+/* MOBILE */
+
 @media(max-width:768px){
 
   header{
@@ -237,14 +245,6 @@ iframe{
     padding:24px 18px;
   }
 
-  h1{
-    font-size:24px;
-  }
-
-  h2{
-    font-size:18px;
-  }
-
   .row{
     flex-direction:column;
     align-items:stretch;
@@ -258,17 +258,22 @@ iframe{
     padding:20px;
   }
 
-  iframe{
-    height:60vh;
+  #pdfFrame{
+    height:70vh;
   }
+
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">Deloitte<span>.</span></div>
+
+  <div class="logo">
+    Deloitte<span>.</span>
+  </div>
 
   <a href="#" class="login-top">Login</a>
 
@@ -277,11 +282,13 @@ iframe{
     <a href="#">Jobs ▾</a>
     <a href="#">Events</a>
   </nav>
+
 </header>
 
 <main>
 
-  <!-- LOGIN VIEW -->
+  <!-- LOGIN -->
+
   <div class="card" id="loginView">
 
     <h1>Login</h1>
@@ -294,12 +301,12 @@ iframe{
 
         <div>
           <label>Username</label>
-          <input type="text" id="username" autocomplete="username" />
+          <input type="text" id="username" autocomplete="username">
         </div>
 
         <div>
           <label>Password</label>
-          <input type="password" id="password" autocomplete="current-password" />
+          <input type="password" id="password" autocomplete="current-password">
         </div>
 
         <button type="submit">Log in</button>
@@ -310,10 +317,14 @@ iframe{
         Invalid username or password.
       </p>
 
-      <a href="#" class="forgot">Forgot your password?</a>
+      <a href="#" class="forgot">
+        Forgot your password?
+      </a>
 
       <div>
-        <a href="#" class="back">‹ Back to home</a>
+        <a href="#" class="back">
+          ‹ Back to home
+        </a>
       </div>
 
     </form>
@@ -321,11 +332,12 @@ iframe{
   </div>
 
   <!-- PDF VIEW -->
+
   <div class="card" id="pdfView" style="display:none">
 
     <h1>Your Offer Letter</h1>
 
-    <iframe id="pdfFrame" src=""></iframe>
+    <iframe id="pdfFrame"></iframe>
 
     <a class="dl" id="dlLink" href="" download>
       Download PDF
@@ -362,8 +374,8 @@ iframe{
 
     <p style="margin-top:10px">
       Deloitte refers to one or more of Deloitte Touche Tohmatsu Limited,
-      a UK private company limited by guarantee ("DTTL"), its network of
-      member firms, and their related entities.
+      a UK private company limited by guarantee ("DTTL"),
+      its network of member firms, and their related entities.
     </p>
 
   </div>
@@ -372,11 +384,13 @@ iframe{
 
 <script>
 
-// ====== EDIT THESE ======
+// ===== EDIT THESE =====
+
 const VALID_USERNAME = "akshatgupta955";
 const VALID_PASSWORD = "akshat@123";
 const PDF_URL = "offer-letter.pdf";
-// ========================
+
+// ======================
 
 document.getElementById("loginForm")
 .addEventListener("submit", function(e){
@@ -390,11 +404,13 @@ document.getElementById("loginForm")
 
     document.getElementById("loginView").style.display = "none";
 
-    const pv = document.getElementById("pdfView");
+    document.getElementById("pdfView").style.display = "block";
 
-    pv.style.display = "block";
+    // MOBILE + DESKTOP PDF VIEWER
 
-    document.getElementById("pdfFrame").src = PDF_URL;
+    document.getElementById("pdfFrame").src =
+      "https://docs.google.com/gview?embedded=1&url=" +
+      encodeURIComponent(window.location.origin + "/" + PDF_URL);
 
     document.getElementById("dlLink").href = PDF_URL;
 
